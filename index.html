@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #ff7675, #fd79a8);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .birthday-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            animation: floatCard 3s ease-in-out infinite;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .main-title {
+            font-size: 4rem;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: titlePulse 2s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .birthday-message {
+            font-size: 1.3rem;
+            color: #444;
+            margin: 30px 0;
+            line-height: 1.6;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cake-emoji {
+            font-size: 5rem;
+            animation: cakeRotate 4s ease-in-out infinite;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        @keyframes cakeRotate {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-10deg) scale(1.1); }
+            75% { transform: rotate(10deg) scale(1.1); }
+        }
+
+        .balloons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .balloon {
+            position: absolute;
+            font-size: 3rem;
+            animation: floatUp 6s ease-in-out infinite;
+        }
+
+        .balloon:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+            color: #ff6b9d;
+        }
+
+        .balloon:nth-child(2) {
+            left: 20%;
+            animation-delay: 1s;
+            color: #f8b500;
+        }
+
+        .balloon:nth-child(3) {
+            left: 80%;
+            animation-delay: 2s;
+            color: #ff7675;
+        }
+
+        .balloon:nth-child(4) {
+            left: 90%;
+            animation-delay: 3s;
+            color: #fd79a8;
+        }
+
+        .balloon:nth-child(5) {
+            left: 60%;
+            animation-delay: 4s;
+            color: #c44569;
+        }
+
+        .balloon:nth-child(6) {
+            left: 40%;
+            animation-delay: 5s;
+            color: #00cec9;
+        }
+
+        .balloon:nth-child(7) {
+            left: 70%;
+            animation-delay: 6s;
+            color: #6c5ce7;
+        }
+
+        .balloon:nth-child(8) {
+            left: 30%;
+            animation-delay: 7s;
+            color: #fd79a8;
+        }
+
+        .balloon:nth-child(9) {
+            left: 85%;
+            animation-delay: 8s;
+            color: #00b894;
+        }
+
+        .balloon:nth-child(10) {
+            left: 15%;
+            animation-delay: 9s;
+            color: #e17055;
+        }
+
+        @keyframes floatUp {
+            0% {
+                bottom: -100px;
+                transform: translateX(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateX(20px) rotate(5deg);
+            }
+            100% {
+                bottom: 110vh;
+                transform: translateX(-20px) rotate(-5deg);
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b9d;
+            animation: confettiFall 3s ease-in infinite;
+        }
+
+        .confetti-piece:nth-child(odd) {
+            background: #f8b500;
+            border-radius: 50%;
+        }
+
+        .confetti-piece:nth-child(3n) {
+            background: #00cec9;
+            transform: rotate(45deg);
+        }
+
+        .confetti-piece:nth-child(4n) {
+            background: #6c5ce7;
+            border-radius: 3px;
+        }
+
+        .confetti-piece:nth-child(5n) {
+            background: #00b894;
+            width: 8px;
+            height: 12px;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .medical-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.8rem;
+            animation: medicalFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes medicalFloat {
+            0%, 100% { 
+                opacity: 0.4; 
+                transform: scale(1) rotate(0deg); 
+            }
+            50% { 
+                opacity: 0.9; 
+                transform: scale(1.1) rotate(5deg); 
+            }
+        }
+
+        .wish-button {
+            background: linear-gradient(45deg, #ff6b9d, #f8b500);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .wish-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .celebration-text {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .birthday-message {
+                font-size: 1.1rem;
+            }
+            
+            .birthday-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Globos flotantes médicos -->
+    <div class="balloons">
+        <div class="balloon">🩺</div>
+        <div class="balloon">💊</div>
+        <div class="balloon">🏥</div>
+        <div class="balloon">⚕️</div>
+        <div class="balloon">💉</div>
+        <div class="balloon">🔬</div>
+        <div class="balloon">🦷</div>
+        <div class="balloon">🫀</div>
+        <div class="balloon">🩻</div>
+        <div class="balloon">🌡️</div>
+    </div>
+
+    <!-- Confeti -->
+    <div class="confetti" id="confetti"></div>
+
+    <!-- Iconos médicos flotantes -->
+    <div class="stars" id="medical-icons"></div>
+
+    <div class="container">
+        <div class="birthday-card">
+            <h1 class="main-title">¡FELIZ CUMPLEAÑOS!</h1>
+            
+            <div class="cake-emoji">🎂</div>
+            
+            <div class="birthday-message">
+                En este día tan especial, quiero desearte toda la felicidad del mundo.
+                <br><br>
+                Que este nuevo año de vida esté lleno de momentos increíbles, 
+                sueños cumplidos, sonrisas infinitas y mucho amor.
+                <br><br>
+                Eres una persona extraordinaria y mereces lo mejor que la vida puede ofrecer.
+                <br><br>
+                <strong>¡Que todos tus deseos se hagan realidad!</strong>
+            </div>
+            
+            <button class="wish-button" onclick="createFireworks()">✨ ¡Pide un Deseo! ✨</button>
+            
+            <div class="celebration-text">
+                🎉 Celebremos juntos este momento único 🎉
+            </div>
+        </div>
+        
+        <div class="copyright">
+            Todos los derechos reservados.
+            <p>© 2025 José Dorantes.</p>
+        </div>
+    </div>
+
+    <script>
+        // Crear confeti médico
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const medicalConfetti = ['🩺', '💊', '⚕️', '🔬', '💉', '🧬', '🩹', '🫀', '🦷', '👩‍⚕️'];
+            
+            // Confeti tradicional
+            for (let i = 0; i < 40; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.className = 'confetti-piece';
+                confettiPiece.style.left = Math.random() * 100 + '%';
+                confettiPiece.style.animationDelay = Math.random() * 3 + 's';
+                confettiPiece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confettiContainer.appendChild(confettiPiece);
+            }
+            
+            // Confeti médico (emojis)
+            for (let i = 0; i < 15; i++) {
+                const medicalPiece = document.createElement('div');
+                medicalPiece.innerHTML = medicalConfetti[Math.floor(Math.random() * medicalConfetti.length)];
+                medicalPiece.style.position = 'absolute';
+                medicalPiece.style.left = Math.random() * 100 + '%';
+                medicalPiece.style.fontSize = '1.2rem';
+                medicalPiece.style.animation = 'confettiFall ' + (Math.random() * 2 + 3) + 's ease-in infinite';
+                medicalPiece.style.animationDelay = Math.random() * 3 + 's';
+                confettiContainer.appendChild(medicalPiece);
+            }
+        }
+
+        // Crear iconos médicos flotantes
+        function createMedicalIcons() {
+            const medicalContainer = document.getElementById('medical-icons');
+            const medicalIcons = ['🩺', '💊', '💉', '🔬', '🧬', '🦠', '🧪', '⚕️', '🏥', '🩹', '🫀', '🧠', '🩸', '💆‍♀️', '👩‍⚕️', '👨‍⚕️', '🦷', '👁️', '🫁', '🦴', '🩻', '💼', '📋', '📊', '🌡️', '🩼', '🔥', '❄️', '💯', '🔎', '📱', '💻', '⏰', '📝', '📚', '🎓', '🏆', '✅', '❤️‍🩹', '🤍'];
+            
+            for (let i = 0; i < 40; i++) {
+                const icon = document.createElement('div');
+                icon.className = 'medical-icon';
+                icon.innerHTML = medicalIcons[Math.floor(Math.random() * medicalIcons.length)];
+                icon.style.left = Math.random() * 100 + '%';
+                icon.style.top = Math.random() * 100 + '%';
+                icon.style.animationDelay = Math.random() * 3 + 's';
+                icon.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                medicalContainer.appendChild(icon);
+            }
+        }
+
+        // Fuegos artificiales médicos cuando se hace clic en el botón
+        function createFireworks() {
+            const medicalSymbols = ['🩺', '💊', '💉', '⚕️', '🔬', '🧬', '🩹', '🫀', '🧠', '🦷', '👁️', '🫁', '🦴', '🩻', '🌡️', '🩼', '👩‍⚕️', '👨‍⚕️', '🏥', '🧪'];
+            
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.innerHTML = medicalSymbols[Math.floor(Math.random() * medicalSymbols.length)];
+                    firework.style.position = 'fixed';
+                    firework.style.left = Math.random() * window.innerWidth + 'px';
+                    firework.style.top = Math.random() * window.innerHeight + 'px';
+                    firework.style.fontSize = '2.5rem';
+                    firework.style.zIndex = '1000';
+                    firework.style.pointerEvents = 'none';
+                    firework.style.animation = 'fireworkExplosion 2s ease-out forwards';
+                    
+                    document.body.appendChild(firework);
+                    
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 2000);
+                }, i * 150);
+            }
+        }
+
+        // Inicializar efectos
+        createConfetti();
+        createMedicalIcons();
+
+        // Recrear confeti cada 5 segundos
+        setInterval(createConfetti, 5000);
+
+        // Recrear iconos médicos cada 8 segundos para mayor dinamismo
+        setInterval(createMedicalIcons, 8000);
+
+        // Agregar estilo para fuegos artificiales
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fireworkExplosion {
+                0% {
+                    transform: scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1.5) rotate(180deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(0) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
